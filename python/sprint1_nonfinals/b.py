@@ -1,6 +1,11 @@
+"""Проверка одинаковой четности трех случайных чисел"""
+
 def check_parity(a: int, b: int, c: int) -> bool:
-    # Здесь реализация вашего решения
-    pass
+    if a % 2 == 0 and b % 2 == 0 and c % 2 == 0:
+        return True
+    if a % 2 != 0 and b % 2 != 0 and c % 2 != 0:
+        return True
+    return False
 
 def print_result(result: bool) -> None:
     if result:
