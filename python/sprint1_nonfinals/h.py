@@ -21,12 +21,12 @@ def get_sum(first_number: str, second_number: str) -> str:
             result += '0'
             remainder = 1
         else:
-            result += str(int(first_number[i]) + int(second_number[i]) + remainder)
+            result += str(int(first_number[i]) +
+                          int(second_number[i]) + remainder)
             remainder = 0
     if remainder:
-         result += '1'
+        result += '1'
     return result[::-1]
-        
 
 
 def read_input() -> Tuple[str, str]:
@@ -34,7 +34,6 @@ def read_input() -> Tuple[str, str]:
     second_number = input().strip()
     return first_number, second_number
 
+
 first_number, second_number = read_input()
 print(get_sum(first_number, second_number))
-
-

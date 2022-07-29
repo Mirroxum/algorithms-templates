@@ -5,7 +5,7 @@ import re
 
 def is_palindrome(line: str) -> bool:
     line = line.lower()
-    reg = r'[\d\w]'
+    reg = r'[/d/w]'
     left = 0
     right = len(line) - 1
     while left < right:
@@ -21,15 +21,14 @@ def is_palindrome(line: str) -> bool:
         right -= 1
     return True
 
+
 print(is_palindrome(input().strip()))
 
-pal=''
-for i in s:
-    if i.isalnum() :
-        pal += i.lower()
-return pal == pal[::-1]
-
-
+# pal=''
+# for i in s:
+#     if i.isalnum() :
+#         pal += i.lower()
+# return pal == pal[::-1]
 
 
 # def is_palindrome(line: str) -> bool:
