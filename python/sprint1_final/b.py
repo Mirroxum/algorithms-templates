@@ -1,15 +1,15 @@
-#ID 69525635
+#ID 69546434
 import sys
 
 
 def main(n, data):
     data = data.replace('.', '')
     result_dict = {}
-    for i in range(len(data)):
-        if data[i] not in result_dict:
-            result_dict[data[i]] = 1
+    for position in range(len(data)):
+        if data[position] not in result_dict:
+            result_dict[data[position]] = 1
         else:
-            result_dict[data[i]] += 1
+            result_dict[data[position]] += 1
     return sum(j <= n*2 for j in result_dict.values())
 
 
