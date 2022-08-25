@@ -11,10 +11,8 @@ if LOCAL:
             self.left = left
 
 
-def solution(root):
-    #  Your code
-    #  “ヽ(´▽｀)ノ”
-    pass
+def solution(head, del_number):
+    
 
 
 def test():

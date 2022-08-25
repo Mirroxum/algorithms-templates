@@ -11,9 +11,19 @@ if LOCAL:
             self.prev = prev
 
 def solution(node):
-    # Your code
-    # ヽ(´▽`)/
-    pass
+    n = node
+    m = node.next
+    n.prev = m
+    n.next = None
+    while m is not None:
+        m.prev = m.next
+        m.next = n
+        n = m
+        m = m.prev
+    node = n
+    return node
+
+
 
 def test():
     node3 = DoubleConnectedNode("node3")

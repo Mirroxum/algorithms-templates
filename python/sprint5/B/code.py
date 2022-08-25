@@ -12,9 +12,9 @@ if LOCAL:
 
 
 def solution(root):
-    #  Your code
-    #  “ヽ(´▽｀)ノ”
-    pass
+    while vertex:
+        print(vertex.value, end=" ")
+        vertex = vertex.next
 
 
 def test():

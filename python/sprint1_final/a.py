@@ -1,32 +1,27 @@
-def main(count_house, data):
-    result = [float('inf')] * count_house
-    count = 0
-    position_zero = 0
-    for position in range(count_house):
-        if data[position] == 0:
-            result[position] = 0
-            count = 1
-            if position_zero is None:
-                position_zero = position
-            if position != 0:
-                for pos in range(position-1, position - (position-position_zero)//2-1, -1):
-                    result[pos] = count
-                    print(result)
-                    count += 1
-                count = 1
-            position_zero = position
-            continue
-        if count:
-            result[position] = count
-            print(result)
-            count += 1
+# ID 69682650
+def distance_zero(count_house, data):
+    result = [0] * count_house
+    zeroes_index = [
+        index for index in range(count_house) if data[index] == 0
+    ]
+    for index in range(zeroes_index[0]):
+        result[index] = zeroes_index[0] - index
+    for index in range(len(zeroes_index) - 1):
+        start = zeroes_index[index]
+        end = zeroes_index[index + 1]
+        for position in range(start + 1, end):
+            result[position] = min(
+                position - start,
+                end - position)
+    for index in range(zeroes_index[-1] + 1, count_house):
+        result[index] = index - zeroes_index[-1]
     return result
 
 
 def read_data():
-    return int(input()), [int(num) for num in input().split()]
+    return int(input()), [int(number) for number in input().split()]
 
 
 if __name__ == '__main__':
     count_house, data = read_data()
-    [print(number, end=' ') for number in main(count_house, data)]
+    print(*distance_zero(count_house, data))

@@ -10,9 +10,14 @@ if LOCAL:
             self.next_item = next_item
 
 def solution(node, elem):
-    # Your code
-    # ヽ(´▽`)/
-    pass
+    count = 0
+    while elem != count:
+        if node is None:
+            return -1
+        if elem == node.value:
+            return count
+        node = node.next_item
+        count += 1
 
 def test():
     node3 = Node("node3", None)
