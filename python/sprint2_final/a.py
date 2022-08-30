@@ -1,4 +1,3 @@
-# ID 69756814	
 class Deque:
     def __init__(self, size):
         self.queue = [None] * size
@@ -9,14 +8,14 @@ class Deque:
 
     def push_back(self, value):
         if self.len == self.max_size:
-            raise AttributeError('Deque is full')
+            raise IndexError('Deque is full')
         self.tail = (self.tail + 1) % self.max_size
         self.queue[self.tail] = value
         self.len += 1
 
     def push_front(self, value):
         if self.len == self.max_size:
-            raise AttributeError('Deque is full')
+            raise IndexError('Deque is full')
         self.head = (self.head - 1) % self.max_size
         self.queue[self.head] = value
         self.len += 1
@@ -49,19 +48,21 @@ def read_data():
 def read_commands(size, commands):
     deque = Deque(size)
     for command in commands:
-        operation, *value = command.split(' ')
+        operation, *value = command.split()
         try:
-            result = getattr(deque, f'{operation}')(*value)
-            if result:
+            result = getattr(deque, operation)(*value)
+            if result is not None:
                 print(result)
-        except Exception:
+        except IndexError:
             print('error')
+        except AttributeError as e:
+            raise ValueError(
+                f'Unknown command: {operation}') from e
 
 
 def main():
     size, commands = read_data()
     read_commands(size, commands)
-
 
 
 if __name__ == '__main__':

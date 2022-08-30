@@ -1,16 +1,18 @@
-# ID 69756768
 import operator
 
 
 class Stack:
     def __init__(self):
-        self.items = []
+        self.__items = []
 
     def push(self, item):
-        return self.items.append(item)
+        return self.__items.append(item)
 
     def pop(self):
-        return self.items.pop()
+        try:
+            return self.__items.pop()
+        except IndexError as e:
+            raise IndexError('Stack is empty') from e
 
 
 OPERATIONS = {
@@ -21,19 +23,23 @@ OPERATIONS = {
 }
 
 
-def calculate_polish_abstract(data, type=int):
+def calculate_polish_abstract(data, conversion=int, operations=OPERATIONS):
     stack = Stack()
     for char in data:
-        if char not in OPERATIONS:
-            stack.push(type(char))
+        if char not in operations:
+            try:
+                stack.push(conversion(char))
+            except ValueError as e:
+                raise ValueError(
+                    f'Failed to convert {char} to {conversion} type') from e
         else:
-            right_operand, left_operand = stack.pop(), stack.pop()
-            stack.push(OPERATIONS[char](left_operand, right_operand))
+            right, left = stack.pop(), stack.pop()
+            stack.push(operations[char](left, right))
     return stack.pop()
 
 
 def main():
-    data = input().split(' ')
+    data = input().split()
     print(calculate_polish_abstract(data))
 
 
