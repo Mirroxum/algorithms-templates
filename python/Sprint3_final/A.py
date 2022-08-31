@@ -1,22 +1,21 @@
-def broken_search(nums, target) -> int:
-    left_border = 0
-    right_border = len(nums) - 1
-    while left_border <= right_border:
-        middle = (left_border + right_border) // 2
-        if nums[middle] == target:
+# ID 69870248
+def broken_search(numbers, target) -> int:
+    left, right = 0, len(numbers) - 1
+    while left < right or left == right:
+        middle = (left + right) // 2
+        middle_numbers = numbers[middle]
+        if middle_numbers == target:
             return middle
-        if nums[left_border] <= nums[middle]:
-            if nums[left_border] <= target < nums[middle]:
-                right_border = middle - 1
+        if (numbers[left] < middle_numbers
+            or numbers[left] == middle_numbers):
+            if (numbers[left] < target < middle_numbers
+                or target == numbers[left]):
+                right = middle - 1
             else:
-                left_border = middle + 1
-        elif nums[middle] < target <= nums[right_border]:
-            left_border = middle + 1
+                left = middle + 1
+        elif (middle_numbers < target < numbers[right]
+              or target == numbers[right]):
+            left = middle + 1
         else:
-            right_border = middle - 1
+            right = middle - 1
     return -1
-
-
-def test():
-    arr = [19, 21, 100, 101, 1, 4, 5, 7, 12]
-    assert broken_search(arr, 5) == 6

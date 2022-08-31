@@ -12,16 +12,15 @@ def merge(arr: list, left: int, mid: int, right: int) -> list:
             result.append(second[j])
             j += 1
     result += first[i:] + second[j:]
-    return result
+    return arr[:left] + result + arr[right:]
 
 def merge_sort(arr: list, left: int, right: int) -> None:
     if left + 1 >= right:
-        return arr
-    mid = (left+right)//2
-    lf = merge_sort(arr, left, mid)
-    rg = merge_sort(arr, mid, right)
-    arr = merge(lf+rg, left, mid, right)
-    print(arr)
+        return 
+    mid = left+(right-1)//2
+    merge_sort(arr, left, mid)
+    merge_sort(arr, mid, right)
+    arr = merge(arr, left, mid, right)
     return arr
 
 
