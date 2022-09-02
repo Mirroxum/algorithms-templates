@@ -1,4 +1,4 @@
-# id 69893372
+# id 69916965
 def quick_sort(candidate):
 
     def partition(candidate, left, right):
@@ -8,8 +8,10 @@ def quick_sort(candidate):
         while start <= end:
             if pivot < candidate[end]:
                 end -= 1
+                continue
             elif candidate[start] < pivot:
                 start += 1
+                continue
             else:
                 (candidate[start],
                  candidate[end]) = (candidate[end],
